@@ -4,7 +4,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from studentorg.forms import OrganizationForm, OrgmemberForm, StudentForm, ProgramForm, CollegeForm
 from django.urls import reverse_lazy
 from studentorg.models import Organization, Orgmember, Student, College, Program
-
+from typing import Any 
+from django.db.models.query import QuerySet
+from django.db.models import Q
 
 
 class HomePageView(ListView):
@@ -19,6 +21,15 @@ class OrganizationList(ListView):
     context_object_name = 'organization'
     template_name = "org_list.html"
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(OrganizationList, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") !=None:
+            query = self.request.GET.get('q')
+            qs = qs.filter(Q(name__icontains=query) |
+                           Q(college__college_name__icontains=query) |
+                           Q(description__icontains=query))
+        return qs
 
 
 class OrganizationCreateView(CreateView):
@@ -43,6 +54,18 @@ class OrgmemberList(ListView):
     context_object_name = 'orgmember'
     template_name = "orgmem_list.html"
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        query = self.request.GET.get("q")
+        if query:
+            qs = qs.filter(
+                Q(student__firstname__icontains=query) |
+                Q(student__lastname__icontains=query) |
+                Q(student__middlename__icontains=query)
+            )
+        return qs
+
 
 class OrgmemberCreateView(CreateView):
     model = Orgmember

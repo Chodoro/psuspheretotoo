@@ -1,0 +1,20 @@
+orange gauge = 1st ult form
+sword gauge = number of times she can slash drain
+
+shiny basic attack = increase sword gauge
+
+lasers slash + dimension cut = consumes sword gauge
+drain slash = consumes sword gauge
+
+ult has 4 forms
+
+1st form = she absorbs solar power
+2nd form = she flies like a jet and slash the dimension
+3rd form = she flies even higher and drain slash
+4th form = ending form she slams the ground
+
+when she enters her 1st form the orange gauge decreases
+it's basically a timer that allows u to perform 2-4th form
+of ultimate. If orange gauge runs out without you performing
+the 2nd 3rd or 4th ultimate she will reset back and you
+have to absorb the solar energy again.
