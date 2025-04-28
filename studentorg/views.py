@@ -7,7 +7,10 @@ from studentorg.models import Organization, Orgmember, Student, College, Program
 from typing import Any 
 from django.db.models.query import QuerySet
 from django.db.models import Q
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
+@method_decorator(login_required, name='dispatch')
 
 class HomePageView(ListView):
     model = Organization

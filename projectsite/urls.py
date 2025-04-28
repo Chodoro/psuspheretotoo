@@ -27,6 +27,10 @@ from studentorg.views import CollegeList, CollegeCreateView , CollegeUpdateView 
 
 from studentorg.views import ProgramList, ProgramCreateView , ProgramUpdateView , ProgramDeleteView
 
+from django.urls import path, re_path
+
+from django.contrib.auth import views as auth_views 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.HomePageView.as_view(), name='home'),
@@ -55,4 +59,8 @@ urlpatterns = [
     path('college_list/add', CollegeCreateView.as_view(), name = 'college-add'),
     path('college_list/<pk>', CollegeUpdateView.as_view(), name = 'college-update'),
     path('college_list/<pk>/delete', CollegeDeleteView.as_view(), name = 'college-delete' ),
+
+    re_path(r'⌃login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    re_path(r'⌃logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    
 ]
