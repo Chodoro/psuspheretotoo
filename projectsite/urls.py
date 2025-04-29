@@ -25,7 +25,7 @@ from studentorg.views import StudentList, StudentCreateView , StudentUpdateView 
 
 from studentorg.views import CollegeList, CollegeCreateView , CollegeUpdateView , CollegeDeleteView 
 
-from studentorg.views import ProgramList, ProgramCreateView , ProgramUpdateView , ProgramDeleteView
+from studentorg.views import ProgramList, RankedOrganizationChart, DoughnutChart, HorizontalBarChart, LineCountbyMonth, PieCountStudentsPerProgram, ProgramCreateView , ChartView, ProgramUpdateView , ProgramDeleteView
 
 from django.urls import path, re_path
 
@@ -60,6 +60,13 @@ urlpatterns = [
     path('college_list/<pk>', CollegeUpdateView.as_view(), name = 'college-update'),
     path('college_list/<pk>/delete', CollegeDeleteView.as_view(), name = 'college-delete' ),
 
+    path('dashboard_chart', ChartView.as_view(), name='dashboard-chart'),
+    path('chart/', PieCountStudentsPerProgram, name='chart'),
+    path('lineChart/', LineCountbyMonth, name='chart'),
+    path('horizontalChart/', HorizontalBarChart, name='chart'),
+    path('doughnutChart/', DoughnutChart, name='chart'),
+    path('scatterChart/', RankedOrganizationChart, name='chart'),
+    
     re_path(r'⌃login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     re_path(r'⌃logout/$', auth_views.LogoutView.as_view(), name='logout'),
     
